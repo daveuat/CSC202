@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Button navButtonMH;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.InformationBoxJunction1 = new System.Windows.Forms.GroupBox();
             this.RoomDesccriptionBox1 = new System.Windows.Forms.TextBox();
@@ -41,22 +40,11 @@
             this.navButtonCD = new System.Windows.Forms.Button();
             this.navButtonMB = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            navButtonMH = new System.Windows.Forms.Button();
+            this.navButtonMH = new System.Windows.Forms.Button();
             this.InformationBoxJunction1.SuspendLayout();
             this.navBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // navButtonMH
-            // 
-            navButtonMH.Image = ((System.Drawing.Image)(resources.GetObject("navButtonMH.Image")));
-            navButtonMH.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            navButtonMH.Location = new System.Drawing.Point(44, 200);
-            navButtonMH.Name = "navButtonMH";
-            navButtonMH.Size = new System.Drawing.Size(131, 39);
-            navButtonMH.TabIndex = 0;
-            navButtonMH.UseVisualStyleBackColor = true;
-            navButtonMH.Click += new System.EventHandler(this.button1_Click);
             // 
             // InformationBoxJunction1
             // 
@@ -115,11 +103,11 @@
             // navBox1
             // 
             this.navBox1.BackColor = System.Drawing.Color.Crimson;
+            this.navBox1.Controls.Add(this.navButtonMH);
             this.navBox1.Controls.Add(this.navButtonMJ);
             this.navBox1.Controls.Add(this.navButtonME);
             this.navBox1.Controls.Add(this.navButtonCD);
             this.navBox1.Controls.Add(this.navButtonMB);
-            this.navBox1.Controls.Add(navButtonMH);
             this.navBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.navBox1.Location = new System.Drawing.Point(1674, 773);
             this.navBox1.Name = "navBox1";
@@ -186,6 +174,17 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // navButtonMH
+            // 
+            this.navButtonMH.Image = ((System.Drawing.Image)(resources.GetObject("navButtonMH.Image")));
+            this.navButtonMH.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.navButtonMH.Location = new System.Drawing.Point(44, 200);
+            this.navButtonMH.Name = "navButtonMH";
+            this.navButtonMH.Size = new System.Drawing.Size(131, 39);
+            this.navButtonMH.TabIndex = 5;
+            this.navButtonMH.UseVisualStyleBackColor = true;
+            this.navButtonMH.Click += new System.EventHandler(this.navButtonMH_click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -219,5 +218,6 @@
         private Button navButtonMB;
         private PictureBox pictureBox1;
         private Button navButtonMJ;
+        private Button navButtonMH;
     }
 }
