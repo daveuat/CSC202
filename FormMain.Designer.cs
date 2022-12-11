@@ -35,12 +35,12 @@
             this.RoomDescriptionLabel1 = new System.Windows.Forms.Label();
             this.RoomNameLabel1 = new System.Windows.Forms.Label();
             this.navBox1 = new System.Windows.Forms.GroupBox();
+            this.navButtonMH = new System.Windows.Forms.Button();
             this.navButtonMJ = new System.Windows.Forms.Button();
             this.navButtonME = new System.Windows.Forms.Button();
             this.navButtonCD = new System.Windows.Forms.Button();
             this.navButtonMB = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.navButtonMH = new System.Windows.Forms.Button();
             this.InformationBoxJunction1.SuspendLayout();
             this.navBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -117,6 +117,17 @@
             this.navBox1.Text = "Personal Nav Device";
             this.navBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // navButtonMH
+            // 
+            this.navButtonMH.Image = ((System.Drawing.Image)(resources.GetObject("navButtonMH.Image")));
+            this.navButtonMH.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.navButtonMH.Location = new System.Drawing.Point(44, 200);
+            this.navButtonMH.Name = "navButtonMH";
+            this.navButtonMH.Size = new System.Drawing.Size(131, 39);
+            this.navButtonMH.TabIndex = 5;
+            this.navButtonMH.UseVisualStyleBackColor = true;
+            this.navButtonMH.Click += new System.EventHandler(this.navButtonMH_click);
+            // 
             // navButtonMJ
             // 
             this.navButtonMJ.Image = ((System.Drawing.Image)(resources.GetObject("navButtonMJ.Image")));
@@ -173,17 +184,6 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // navButtonMH
-            // 
-            this.navButtonMH.Image = ((System.Drawing.Image)(resources.GetObject("navButtonMH.Image")));
-            this.navButtonMH.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.navButtonMH.Location = new System.Drawing.Point(44, 200);
-            this.navButtonMH.Name = "navButtonMH";
-            this.navButtonMH.Size = new System.Drawing.Size(131, 39);
-            this.navButtonMH.TabIndex = 5;
-            this.navButtonMH.UseVisualStyleBackColor = true;
-            this.navButtonMH.Click += new System.EventHandler(this.navButtonMH_click);
             // 
             // FormMain
             // 
