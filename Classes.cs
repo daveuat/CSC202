@@ -8,7 +8,7 @@ namespace CSC202
 {
     internal class Classes
     {
-        public string AreaNames;
-        public string AreaDescriptions;
+        public string? AreaNames;
+        public string? AreaDescriptions;
     }
 }
