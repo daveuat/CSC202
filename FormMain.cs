@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,11 @@ namespace CSC202
         Classes Barracks = new Classes();
         Classes Engineering = new Classes();
         Classes MessHall = new Classes();
+        Classes Observation = new Classes();
+        Classes Supply = new Classes();
+        Classes Airlock = new Classes();
+
+        int threat = 1; //threat level counter for the meter before alien attack
 
         public FormMain()
         {
@@ -55,7 +61,15 @@ namespace CSC202
                 " Now let's see whats on the menu." +
                 " After eating you notice you can go back to the Main Junction to travel to your next destination.";
 
+            Observation.AreaNames = "Observation";
+            Observation.AreaDescriptions = "As you enter the Observation room you just stop and stare in amazement." +
+                " Is this really where you live now? Yes, yes it is.";
 
+            Supply.AreaNames = "Supply";
+            Supply.AreaDescriptions = "It's the supply room. Now you know where to go when you lose your pen.";
+
+            Airlock.AreaNames = "Air Lock";
+            Airlock.AreaDescriptions = "Nothing but 2 doors stopping the vaccuum of space from killing you.";
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -77,31 +91,37 @@ namespace CSC202
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void navButtonME_Click(object sender, EventArgs e)
         {
-            //Shows the Engineering image on the PictureBox
-            pictureBox1.Image = CSC202.Properties.Resources.engineering;
-            int playerCORD = 5; //Integer for locations
-            //change name of location in roomname box
-            RoomNameBox1.Text = Engineering.AreaNames; //Week 4 updates with classes and objects for name and descriptions.
-            //change description of the room in "RoomDescriptionBox1
-            RoomDesccriptionBox1.Text = Engineering.AreaDescriptions; //Week 4 updates with classes and objects for name and descriptions.
-            if (playerCORD == 5) // If statement to disable locations that are unavailable from the current location.
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
+            int playerCORD = 1; //Integer for locations
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.engineering; //Shows the Engineering image on the PictureBox
+                    //change name of location in roomname box
+                    RoomNameBox1.Text = Engineering.AreaNames; //Week 4 updates with classes and objects for name and descriptions.
+                                                               //change description of the room in "RoomDescriptionBox1
+                    RoomDesccriptionBox1.Text = Engineering.AreaDescriptions; //Week 4 updates with classes and objects for name and descriptions.
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (playerCORD == 1) // If statement to disable locations that are unavailable from the current location.
             {
                 navButtonMB.Enabled = false;
                 navButtonMH.Enabled = false;
+                navButtonOB.Enabled = false;
             }
             else // else statement to enable the locations that are available.
             {
@@ -117,37 +137,73 @@ namespace CSC202
 
         private void navButtonMJ_Click(object sender, EventArgs e)
         {
-            //Shows the Main Junction image on the PictureBox
-            pictureBox1.Image = CSC202.Properties.Resources.mainjunction;
-            int playerCORD = 1; //Integer for locations
-                                //change name of location in roomname box
-            RoomNameBox1.Text = MainJunction.AreaNames; //Week 4 updates with classes and objects for name and descriptions.
-            //change description of the room in "RoomDescriptionBox1
-            RoomDesccriptionBox1.Text = MainJunction.AreaDescriptions;
-            if (playerCORD == 1) // If statement to enable all locations.
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
+            int playerCORD = 2; //Integer for locations
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.mainjunction; //Shows the Main junction image on the PictureBox
+                    RoomNameBox1.Text = MainJunction.AreaNames;                    //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = MainJunction.AreaDescriptions;     //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (playerCORD == 2) // If statement to enable all locations.
             {
                 navButtonCD.Enabled = true;
                 navButtonMB.Enabled = true;
                 navButtonME.Enabled = true;
                 navButtonMJ.Enabled = true;
                 navButtonMH.Enabled = true;
+                navButtonOB.Enabled = true;
+                navButtonAL.Enabled = true;
+                navButtonSP.Enabled = true;
             }
         }
 
         private void navButtonMB_Click(object sender, EventArgs e)
         {
-            //Shows the Main barracks image on the PictureBox
-            pictureBox1.Image = CSC202.Properties.Resources.mainbarracks;
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
             int playerCORD = 3; //Integer for locations
-            //change name of location in roomname box
-            RoomNameBox1.Text = Barracks.AreaNames; //Week 4 updates with classes and objects for name and descriptions.
-            //change description of the room in "RoomDescriptionBox1
-            RoomDesccriptionBox1.Text = Barracks.AreaDescriptions; //Week 4 updates with classes and objects for name and descriptions.
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.mainbarracks; //Shows the Main barracks image on the PictureBox
+                    RoomNameBox1.Text = Barracks.AreaNames;                //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = Barracks.AreaDescriptions; //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             if (playerCORD == 3) // If statement to disable locations that are unavailable from the current location.
             {
                 navButtonCD.Enabled = false;
                 navButtonME.Enabled = false;
                 navButtonMH.Enabled = false;
+                navButtonOB.Enabled = false;
+                navButtonAL.Enabled = false;
+                navButtonSP.Enabled = false;
             }
             else // else statement to enable the locations that are available.
             {
@@ -164,17 +220,36 @@ namespace CSC202
 
         private void navButtonCD_Click(object sender, EventArgs e)
         {
-            //Shows the Command Deck image on the PictureBox
-            pictureBox1.Image = CSC202.Properties.Resources.commanddeck;
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
             int playerCORD = 4; //Integer for locations
-            //change name of location in roomname box
-            RoomNameBox1.Text = CommandDeck.AreaNames; //Week 4 updates with classes and objects for name and descriptions.
-            //change description of the room in "RoomDescriptionBox1
-            RoomDesccriptionBox1.Text = CommandDeck.AreaDescriptions; //Week 4 updates with classes and objects for name and descriptions.
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.commanddeck;   //Shows the Command Deck image on the PictureBox
+                    RoomNameBox1.Text = CommandDeck.AreaNames;                //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = CommandDeck.AreaDescriptions; //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             if (playerCORD == 4) // If statement to disable locations that are unavailable from the current location.
             {
                 navButtonMB.Enabled = false;
                 navButtonMH.Enabled = false;
+                navButtonOB.Enabled = false;
+                navButtonAL.Enabled = false;
+                navButtonSP.Enabled = false;
+                navButtonOB.Enabled = false;
             }
             else // else statement to enable the locations that are available.
             {
@@ -185,23 +260,162 @@ namespace CSC202
 
         private void navButtonMH_click(object sender, EventArgs e)
         {
-            //Shows the Mess Hall image on the PictureBox
-            pictureBox1.Image = CSC202.Properties.Resources.messhall;
-            int playerCORD = 2; //Integer for locations
-            //change name of location in roomname box
-            RoomNameBox1.Text = MessHall.AreaNames; //Week 4 updates with classes and objects for name and descriptions.
-            //change description of the room in "RoomDescriptionBox1
-            RoomDesccriptionBox1.Text = MessHall.AreaDescriptions; //Week 4 updates with classes and objects for name and descriptions.
-            if (playerCORD == 2) // If statement to disable locations that are unavailable from the current location.
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
+            int playerCORD = 5; //Integer for locations
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.messhall; //Shows the Mess Hall image on the PictureBox
+                    RoomNameBox1.Text = MessHall.AreaNames;                //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = MessHall.AreaDescriptions; //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (playerCORD == 5) // If statement to disable locations that are unavailable from the current location.
             {
                 navButtonMB.Enabled = false;
                 navButtonCD.Enabled = false;
                 navButtonME.Enabled = false;
+                navButtonOB.Enabled = false;
+                navButtonAL.Enabled = false;
             }
             else // else statement to enable the locations that are available.
             {
                 navButtonMJ.Enabled = true;
                 navButtonMH.Enabled = true;
+                navButtonSP.Enabled = true;
+            }
+        }
+
+        private void navButtonOB_Click(object sender, EventArgs e)
+        {
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
+            int playerCORD = 6; //Integer for locations
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.oberservation; //Shows the Oberservation image on the PictureBox
+                    RoomNameBox1.Text = Observation.AreaNames;                //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = Observation.AreaDescriptions; //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (playerCORD == 6) // If statement to enable all locations.
+            {
+                navButtonCD.Enabled = false;
+                navButtonMB.Enabled = false;
+                navButtonME.Enabled = false;
+                navButtonMH.Enabled = false;
+                navButtonAL.Enabled = false;
+                navButtonSP.Enabled = false;
+
+            }
+            else
+            {
+                navButtonMJ.Enabled = true;
+                navButtonOB.Enabled = true;
+            }
+        }
+
+        private void navButtonSP_Click(object sender, EventArgs e)
+        {
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
+            int playerCORD = 7; //Integer for locations
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.supply;  //Shows the Oberservation image on the PictureBox
+                    RoomNameBox1.Text = Supply.AreaNames;                //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = Supply.AreaDescriptions; //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (playerCORD == 7) // If statement to enable all locations.
+            {
+                navButtonCD.Enabled = false;
+                navButtonMB.Enabled = false;
+                navButtonME.Enabled = false;
+                navButtonMH.Enabled = false;
+                navButtonOB.Enabled = false;
+                navButtonAL.Enabled = false;
+            }
+            else
+            {
+                navButtonMJ.Enabled = true;
+                navButtonSP.Enabled = true;
+            }
+        }
+
+        private void navButtonAL_Click(object sender, EventArgs e)
+        {
+            threat++; //threat meter counter with every location change
+            threatCount.Text = Convert.ToString(threat); //updates number in threat box
+            int playerCORD = 8; //Integer for locations
+            if (threat >= 30) //if statement for threat/alien attack image and message
+            {
+                pictureBox1.Image = CSC202.Properties.Resources.alien;
+                MessageBox.Show("An Alien has Attacked! You should head somewhere else and fast!");
+                threat = 0; //resets threat
+            }
+            else
+            {
+                try
+                {
+                    pictureBox1.Image = CSC202.Properties.Resources.airlock;    //Shows the Airlock image on the PictureBox
+                    RoomNameBox1.Text = Airlock.AreaNames;                //change name of location in roomname box
+                    RoomDesccriptionBox1.Text = Airlock.AreaDescriptions; //change description of the room in "RoomDescriptionBox1
+                }
+                catch (Exception ex) //Final Week Exception Handling addition.
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (playerCORD == 8) // If statement to enable all locations.
+            {
+                navButtonCD.Enabled = false;
+                navButtonMB.Enabled = false;
+                navButtonME.Enabled = false;
+                navButtonMH.Enabled = false;
+                navButtonOB.Enabled = false;
+                navButtonSP.Enabled = false;
+            }
+            else
+            {
+                navButtonMJ.Enabled = true;
+                navButtonAL.Enabled = true;
             }
         }
     }
